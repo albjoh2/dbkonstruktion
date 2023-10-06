@@ -1,0 +1,34 @@
+﻿Detta är searchKampanjvyn<br />
+du matade in @ViewBag.kampanjID
+
+
+<h2>Sök kampanjer</h2>
+@if(ViewBag.kampanjdata != null && ((System.Data.DataTable)ViewBag.kampanjdata).Rows.Count > 0)
+{
+        <table>
+            <tr>
+                @foreach (var dataColumn in ViewBag.kampanjdata.Columns)
+                {
+                    <th>@dataColumn.ColumnName</th>
+                }
+            </tr>
+            @foreach (var row in ViewBag.kampanjdata.Rows)
+            {
+                <tr>
+                    @for(int i = 0; i<ViewBag.kampanjdata.Columns.Count; ++i)
+                    {
+
+                        <td>@row[i]</td>
+                    }
+                </tr>
+            }
+
+        </table>
+}
+else
+{
+        <p>Inga sökresultat hittade</p>
+}
+
+
+@Html.ActionLink("Till index", "Index","Home", new { kampanjID = ViewBag.kampanjID })

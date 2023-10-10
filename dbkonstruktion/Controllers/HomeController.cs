@@ -32,7 +32,16 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    public IActionResult ListUndanflykter()
+    {
+        UndanflyktModel km = new UndanflyktModel(_configuration);
+        DataTable undanflyktdata = km.GetUndanflykter();
+        ViewBag.undanflyktdata = undanflyktdata;
+
+        return View();
+    }
+
+    public IActionResult Undanflykter()
     {
         return View();
     }

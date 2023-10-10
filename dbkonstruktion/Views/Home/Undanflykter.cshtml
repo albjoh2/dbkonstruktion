@@ -1,10 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Undanflykter";
 }
+<h1>@ViewData["Title"]</h1>
 
 <div class="text-center">
-    <h1 class="display-4">Kampanjer</h1>
-    <form method="post" action="@Url.Action("SearchKampanj", "Home")">
+    <h1 class="display-4">Welcome</h1>
+    <form method="post" action="@Url.Action("ListUndanflykter", "Home")">
         <label>
             KampanjID
             <input type="number" name="kampanjID" />

@@ -12,4 +12,13 @@
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.1.0" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Views\Home\Undanflykter">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Home\Undanflykter.cshtml" />
+  </ItemGroup>
 </Project>

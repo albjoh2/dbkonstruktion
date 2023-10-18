@@ -1,34 +1,39 @@
-﻿Detta är searchKampanjvyn<br />
-du matade in @ViewBag.kampanjID
+﻿
+<div class="text-center" style="display:flex; flex-direction:column; align-items:center;justify-content:center;">
+    Din sökning: @ViewBag.kampanjID
 
 
-<h2>Sök kampanjer</h2>
-@if(ViewBag.kampanjdata != null && ((System.Data.DataTable)ViewBag.kampanjdata).Rows.Count > 0)
-{
+    <h2>Sök kampanjer</h2>
+    @if (ViewBag.kampanjdata != null && ((System.Data.DataTable)ViewBag.kampanjdata).Rows.Count > 0)
+    {
         <table>
             <tr>
                 @foreach (var dataColumn in ViewBag.kampanjdata.Columns)
                 {
                     <th>@dataColumn.ColumnName</th>
                 }
+                <th></th>
             </tr>
             @foreach (var row in ViewBag.kampanjdata.Rows)
             {
                 <tr>
-                    @for(int i = 0; i<ViewBag.kampanjdata.Columns.Count; ++i)
+                    @for (int i = 0; i < ViewBag.kampanjdata.Columns.Count; ++i)
                     {
-
                         <td>@row[i]</td>
                     }
+                <td>
+                    @Html.ActionLink("Arkivera", "ArkiveraKampanj", "Home", new { kampanjIDAttArkivera = row[0] })
+                </td>
                 </tr>
             }
 
         </table>
-}
-else
-{
+    }
+    else
+    {
         <p>Inga sökresultat hittade</p>
-}
+    }
 
 
-@Html.ActionLink("Till index", "Index","Home", new { kampanjID = ViewBag.kampanjID })
+    
+</div>

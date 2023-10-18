@@ -16,9 +16,11 @@ public class HomeController : Controller
         _configuration = configuration;
     }
 
-    public IActionResult Index(int kampanjID)
+    public IActionResult Index()
     {
-        ViewBag.kampanjID = kampanjID;
+        UndanflyktModel um = new UndanflyktModel(_configuration);
+        DataTable undanflyktdata = um.GetUndanflykter();
+        ViewBag.undanflyktdata = undanflyktdata;
         return View();
     }
 
@@ -32,17 +34,27 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult ListUndanflykter()
+    public IActionResult ArkiveraKampanj(int kampanjIDAttArkivera)
     {
-        UndanflyktModel km = new UndanflyktModel(_configuration);
-        DataTable undanflyktdata = km.GetUndanflykter();
-        ViewBag.undanflyktdata = undanflyktdata;
+        KampanjModel km = new KampanjModel(_configuration);
+        km.ArkiveraKampanj(kampanjIDAttArkivera);
 
-        return View();
+        return RedirectToAction("Index");
     }
 
-    public IActionResult Undanflykter()
+    public IActionResult SkapaKampanj(int nyttKampanjID,string nyttSlutdatum, string nyKommentar,  string nyUndanflykt)
     {
+        KampanjModel km = new KampanjModel(_configuration);
+        km.CreateKampanj(nyttKampanjID, nyttSlutdatum, nyKommentar, nyUndanflykt);
+
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult Undanflykt()
+    {
+        UndanflyktModel um = new UndanflyktModel(_configuration);
+        DataTable undanflyktdata = um.GetUndanflykter();
+        ViewBag.undanflyktdata = undanflyktdata;
         return View();
     }
 
